@@ -10,7 +10,7 @@ function Login({ onLogin, onRegister }) {
     e.preventDefault()
     
     try {
-      const response = await axios.post('http://localhost:8088/users/login', {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/users/login`, {
         username,
         password
       })

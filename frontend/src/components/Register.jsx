@@ -10,7 +10,7 @@ function Register({ onBack, onSuccess }) {
     e.preventDefault()
     
     try {
-      await axios.post('http://localhost:8088/users', {
+      await axios.post(`${import.meta.env.VITE_API_URL}/users`, {
         username,
         password
       })

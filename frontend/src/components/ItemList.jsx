@@ -19,7 +19,7 @@ function ItemList({ onLogout }) {
 
   const fetchItems = async () => {
     try {
-      const response = await axios.get('http://localhost:8088/items')
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/items`)
       setItems(response.data)
       setLoading(false)
     } catch (error) {
@@ -31,7 +31,7 @@ function ItemList({ onLogout }) {
   const fetchCartCount = async () => {
     const token = localStorage.getItem('token')
     try {
-      const response = await axios.get('http://localhost:8088/carts/me', {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/carts/me`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       if (response.data.items) {
@@ -54,7 +54,7 @@ function ItemList({ onLogout }) {
     const token = localStorage.getItem('token')
     try {
       await axios.post(
-        'http://localhost:8088/carts',
+        `${import.meta.env.VITE_API_URL}/carts`,
         { item_id: itemId, qty: 1 },
         { headers: { Authorization: `Bearer ${token}` } }
       )
@@ -68,7 +68,7 @@ function ItemList({ onLogout }) {
   const viewCart = async () => {
     const token = localStorage.getItem('token')
     try {
-      const response = await axios.get('http://localhost:8088/carts/me', {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/carts/me`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       setCartItems(response.data.items || [])
@@ -81,7 +81,7 @@ function ItemList({ onLogout }) {
   const viewOrders = async () => {
     const token = localStorage.getItem('token')
     try {
-      const response = await axios.get('http://localhost:8088/orders/me', {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/orders/me`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       setOrders(response.data || [])
@@ -95,7 +95,7 @@ function ItemList({ onLogout }) {
     const token = localStorage.getItem('token')
     try {
       await axios.post(
-        'http://localhost:8088/orders',
+        `${import.meta.env.VITE_API_URL}/orders`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       )
@@ -111,7 +111,7 @@ function ItemList({ onLogout }) {
     const token = localStorage.getItem('token')
     try {
       await axios.post(
-        'http://localhost:8088/users/logout',
+        `${import.meta.env.VITE_API_URL}/users/logout`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       )
